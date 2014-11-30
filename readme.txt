@@ -31,7 +31,7 @@ From cmd in Zenki/ folder run "gradle clean build", this will build war
 
 8. Run tomcat
 
-9. Check. In browser open "http://localhost:8080/zenki/welcome.htm"
+9. Check. In browser open "http://localhost:8080/zenki/hello"
 If you see greetings text - ok, if not - it's not ok.
 
 10. Additional setup
