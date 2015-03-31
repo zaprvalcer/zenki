@@ -1,16 +1,22 @@
 package com.minasan.zenki.services;
 
-import com.minasan.zenki.models.RoomStatusModel;
-import org.springframework.stereotype.Service;
+import com.minasan.zenki.models.*;
 
-import java.util.Arrays;
+public interface MocksGeneratorService {
 
-@Service
-public class MocksGeneratorService {
-    public RoomStatusModel generateRoomStatus() {
-        RoomStatusModel roomStatus = new RoomStatusModel();
-        roomStatus.setIsRoomFull(true);
-        roomStatus.setPlayers(Arrays.asList("Led", "Zeppelin"));
-        return roomStatus;
-    }
+    public PlayerTO getPlayerData(long playerId);
+
+    public VotesSummaryTO submitVote(VoteTO vote);
+
+    public VotesSummaryTO getVotes();
+
+    public VotesSummaryTO setTopic(TopicTO topic);
+
+    public TopicTO getTopic();
+
+    public DistributionTO getDistribution(long playerId);
+
+    public RoomContentTO addUser(UserTO player);
+
+    public RoomContentTO getRoomContent();
 }
