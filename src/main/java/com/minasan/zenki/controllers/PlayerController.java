@@ -13,10 +13,11 @@ public class PlayerController {
     @Resource
     private MocksGeneratorService mocksGeneratorService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/{playerId}", method = RequestMethod.GET)
     @ResponseBody
-    public RoomContentTO registerNewPlayer(@RequestBody UserTO player) {
-        return mocksGeneratorService.addUser(player);
+    public UserTO getUserData(@PathVariable long playerId) {
+        return mocksGeneratorService.getUserData(playerId);
     }
 
     @RequestMapping(value = "/{playerId}/distribution", method = RequestMethod.GET)

@@ -13,8 +13,25 @@ public class MocksGeneratorServiceImpl implements MocksGeneratorService {
     private static final long RIVAL1_ID = 111l;
     private static final long RIVAL2_ID = 222l;
     private static final long RIVAL3_ID = 333l;
-    private static final long TOPIC_CARD_ID = 444l;
-    private static final String TOPIC = "Mock Topic Dat Is";
+    private static final int PLAYERS_LIMIT = 4;
+
+    private RoomContentTO roomContent = new RoomContentTO();
+    private TopicTO topic = null;
+
+    public MocksGeneratorServiceImpl() {
+        roomContent.setIsRoomFull(false);
+        roomContent.setUsers(generateRivals());
+    }
+
+    @Override
+    public UserTO getUserData(long playerId) {
+        for(UserTO user : roomContent.getUsers()) {
+            if(user.getId() == playerId) {
+                return user;
+            }
+        }
+        return null;
+    }
 
     @Override
     public PlayerTO getPlayerData(long playerId) {
@@ -47,10 +64,6 @@ public class MocksGeneratorServiceImpl implements MocksGeneratorService {
 
     @Override
     public TopicTO getTopic() {
-        TopicTO topic = new TopicTO();
-        topic.setCardId(TOPIC_CARD_ID);
-        topic.setPlayerId(RIVAL1_ID);
-        topic.setTitle(TOPIC);
         return topic;
     }
 
@@ -88,25 +101,30 @@ public class MocksGeneratorServiceImpl implements MocksGeneratorService {
     }
 
     @Override
-    public RoomContentTO addUser(UserTO newUser) {
-        System.out.println("Added new user "+newUser.getName());
-        RoomContentTO roomContent = getRoomContent();
-        roomContent.getUsers().add(newUser);
-        roomContent.setIsFilled(true);
-        return roomContent;
+    public UserTO addUser(String newUserName) {
+        System.out.println("Added new user "+newUserName);
+        List<UserTO> users = roomContent.getUsers();
+        UserTO lastUser = users.get(users.size()-1);
+
+        long newIndex = lastUser.getId()+1;
+        UserTO newUser = generateUser(newIndex, newUserName, ColorSchemaTO.BLUE);
+
+        users.add(newUser);
+
+        if(users.size() >= PLAYERS_LIMIT) {
+            roomContent.setIsRoomFull(true);
+        }
+        return newUser;
     }
 
     @Override
     public RoomContentTO getRoomContent() {
-        RoomContentTO roomContent = new RoomContentTO();
-        roomContent.setIsFilled(false);
-        roomContent.setUsers(generateRivals());
         return roomContent;
     }
 
     private CardTO generateCard(long cardId) {
         CardTO card = new CardTO();
-        card.setCardId(cardId);
+        card.setId(cardId);
         return card;
     }
 
@@ -128,7 +146,6 @@ public class MocksGeneratorServiceImpl implements MocksGeneratorService {
         List<UserTO> rivals = new ArrayList<>();
         rivals.add(generateUser(RIVAL1_ID, "Bruce", ColorSchemaTO.RED));
         rivals.add(generateUser(RIVAL2_ID, "Lee", ColorSchemaTO.GREEN));
-        rivals.add(generateUser(RIVAL3_ID, "Vasya", ColorSchemaTO.YELLOW));
         return rivals;
     }
     private UserTO generateUser(long rivalId, String name, ColorSchemaTO schema) {
