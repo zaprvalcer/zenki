@@ -3,15 +3,15 @@ package com.minasan.zenki.models;
 import java.util.List;
 
 public class RoomContentTO {
-    private boolean isFilled;
+    private boolean isRoomFull;
     private List<UserTO> users;
 
-    public boolean getIsFilled() {
-        return isFilled;
+    public boolean getIsRoomFull() {
+        return isRoomFull;
     }
 
-    public void setIsFilled(boolean isCrowded) {
-        this.isFilled = isCrowded;
+    public void setIsRoomFull(boolean isCrowded) {
+        this.isRoomFull = isCrowded;
     }
 
     public List<UserTO> getUsers() {

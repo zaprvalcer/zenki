@@ -10,6 +10,7 @@
 
     <mvc:annotation-driven/>
     <context:component-scan base-package="com.minasan.zenki"/>
+    <mvc:resources mapping="/resources/**" location="resources/maintheme/" />
 
     <bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
