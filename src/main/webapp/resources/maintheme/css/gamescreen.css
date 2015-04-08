@@ -1,0 +1,112 @@
+#gs_rivals{
+    float: left;
+    display: block;
+    width: 100%;
+}
+
+#gs_round_topic {
+    text-align: center;
+    height: 40px;
+    margin: 5px 0;
+    background: #fff0f5;
+    float: left;
+    display: block;
+    width: 100%;
+    border: 1px solid #000;
+}
+
+#gs_player_cards {
+    float: left;
+    display: block;
+    padding: 20px 0;
+    border: 1px solid #000;
+}
+
+#gs_player_tools {
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    float: left;
+    display: block;
+    border: 1px solid #000;
+}
+
+#gs_rivals {
+    height: 50px;
+    border: 1px solid #000;
+}
+
+#gs_move_tooltip {
+    width: 100%;
+    font-style: italic;
+}
+
+#gs_cards_table {
+    height: 150px;
+    margin: 10px 0;
+    padding: 20px 0;
+    background: #faebd7;
+    float: left;
+    display: block;
+    width: 100%;
+    border: 1px solid #000;
+}
+
+#gs_player_CHOOSE_TOPIC_text {
+    width: 150px;
+    margin: 10px 0;
+}
+
+.gs_rival {
+    float: left;
+    width: 29.33%;
+    height: 50px;
+    border: 1px solid #000;
+}
+
+.gs_player_name,
+.gs_player_rate,
+.gs_player_bonus {
+    text-align: center;
+}
+
+.RED {
+    background: #ffbdac !important;
+}
+
+.BLUE {
+   background: #d7d9ff !important;
+}
+
+.GREEN {
+    background: #96ff93 !important;
+}
+
+.YELLOW {
+    background: #f4ffa4 !important;
+}
+
+.gs_game_card {
+    padding: 5px;
+    background: white;
+    height: 150px;
+    width: 100px;
+    margin: 0 0 0 20px;
+    border: 1px solid #000;
+}
+
+.gs_game_card img {
+    border: 1px solid #000;
+}
+
+.gs_player_card, .gs_table_card {
+    float: left;
+}
+
+.gs_chosen_card {
+    border: 1px solid red !important;
+}
+
+.gs_closed_card {
+    background: #808080;
+}

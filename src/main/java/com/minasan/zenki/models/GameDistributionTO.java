@@ -2,7 +2,8 @@ package com.minasan.zenki.models;
 
 import java.util.List;
 
-public class DistributionTO {
+public class GameDistributionTO {
+    private TopicTO topic;
     private PlayerTO player;
     private List<UserTO> party;
 
@@ -20,5 +21,13 @@ public class DistributionTO {
 
     public void setPlayer(PlayerTO player) {
         this.player = player;
+    }
+
+    public TopicTO getTopic() {
+        return topic;
+    }
+
+    public void setTopic(TopicTO topic) {
+        this.topic = topic;
     }
 }
