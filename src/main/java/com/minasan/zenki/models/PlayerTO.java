@@ -1,36 +1,18 @@
 package com.minasan.zenki.models;
 
-import java.util.Set;
+import java.util.List;
 
 public class PlayerTO {
-    private long id;
-    private String name;
-    private ColorSchemaTO colorSchema;
+    private UserTO data;
     private PlayerStatusTO status;
-    private Set<CardTO> cards;
+    private List<CardTO> cards;
 
-    public String getName() {
-        return name;
+    public List<CardTO> getCards() {
+        return cards;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ColorSchemaTO getColorSchema() {
-        return colorSchema;
-    }
-
-    public void setColorSchema(ColorSchemaTO colorSchema) {
-        this.colorSchema = colorSchema;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setCards(List<CardTO> cards) {
+        this.cards = cards;
     }
 
     public PlayerStatusTO getStatus() {
@@ -41,11 +23,11 @@ public class PlayerTO {
         this.status = status;
     }
 
-    public Set<CardTO> getCards() {
-        return cards;
+    public UserTO getData() {
+        return data;
     }
 
-    public void setCards(Set<CardTO> cards) {
-        this.cards = cards;
+    public void setData(UserTO data) {
+        this.data = data;
     }
 }

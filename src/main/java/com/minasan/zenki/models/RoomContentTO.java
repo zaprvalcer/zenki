@@ -3,22 +3,22 @@ package com.minasan.zenki.models;
 import java.util.List;
 
 public class RoomContentTO {
-    private boolean isRoomFull;
-    private List<UserTO> users;
+    private RoomStatusTO roomStatus;
+    private List<UserTO> participants;
 
-    public boolean getIsRoomFull() {
-        return isRoomFull;
+    public RoomStatusTO getRoomStatus() {
+        return roomStatus;
     }
 
-    public void setIsRoomFull(boolean isCrowded) {
-        this.isRoomFull = isCrowded;
+    public void setRoomStatus(RoomStatusTO roomStatus) {
+        this.roomStatus = roomStatus;
     }
 
-    public List<UserTO> getUsers() {
-        return users;
+    public List<UserTO> getParticipants() {
+        return participants;
     }
 
-    public void setUsers(List<UserTO> users) {
-        this.users = users;
+    public void setParticipants(List<UserTO> participants) {
+        this.participants = participants;
     }
 }

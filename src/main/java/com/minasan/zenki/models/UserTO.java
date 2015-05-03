@@ -4,6 +4,7 @@ public class UserTO {
     private long id;
     private String name;
     private ColorSchemaTO colorSchema;
+    private int rate;
 
     public long getId() {
         return id;
@@ -27,5 +28,13 @@ public class UserTO {
 
     public void setColorSchema(ColorSchemaTO colorSchema) {
         this.colorSchema = colorSchema;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 }

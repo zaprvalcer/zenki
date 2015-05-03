@@ -1,22 +1,40 @@
 package com.minasan.zenki.models;
 
 public class VoteTO {
-    private long cardId;
-    private long playerId;
+    private UserTO owner;
+    private UserTO voter;
+    private int ownerBonus;
+    private int voterBonus;
 
-    public long getCardId() {
-        return cardId;
+    public UserTO getOwner() {
+        return owner;
     }
 
-    public void setCardId(long cardId) {
-        this.cardId = cardId;
+    public void setOwner(UserTO owner) {
+        this.owner = owner;
     }
 
-    public long getPlayerId() {
-        return playerId;
+    public UserTO getVoter() {
+        return voter;
     }
 
-    public void setPlayerId(long playerId) {
-        this.playerId = playerId;
+    public void setVoter(UserTO voter) {
+        this.voter = voter;
+    }
+
+    public int getOwnerBonus() {
+        return ownerBonus;
+    }
+
+    public void setOwnerBonus(int ownerBonus) {
+        this.ownerBonus = ownerBonus;
+    }
+
+    public int getVoterBonus() {
+        return voterBonus;
+    }
+
+    public void setVoterBonus(int voterBonus) {
+        this.voterBonus = voterBonus;
     }
 }
