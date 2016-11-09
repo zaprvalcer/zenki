@@ -1,59 +1,54 @@
-var REQUESTS_TIMEOUT = 3000;
-$(document).ready(function() {
-    $('#mp_greetings').html((USER_DATA == null ? localization['greet.anonymous'] : localization['greet.user'] + USER_DATA.name));
-    $('#mp_login_description').html(localization['sign_in.description']);
-    $('#mp_login_button').html(localization['mainpage.button.sign_in']);
-    updatePageRoomContent();
-});
+function loadMainPageContent() {
+    var greetings = (USER_DATA == null ? 'Wanna play a game?' : 'Hi, ' + USER_DATA.name);
+    $('#mp_greetings').html(greetings);
+    requestRoomContent();
+}
 
-function updatePageRoomContent() {
+function requestRoomContent() {
     $.ajax({
         url: APPLICATION_BASE_URL+"/data/room/content",
-        success: function(result) {
-            if(USER_DATA != null) {
-                processRegisteredUserResponse(result);
-            } else {
-                processAnonymousUserResponse(result);
-            }
-        }
+        success: updatePageRoomContent
     });
 }
 
-function processRegisteredUserResponse(result) {
-    if(result.roomStatus == 'CROWDED') {
-        window.location.href = APPLICATION_BASE_URL+"/gamescreen?pid="+USER_DATA.id;
-    } else {
-        if($("#mp_room_status").attr('roomStatus') != result.roomStatus) {
+function updatePageRoomContent(result) {
+    if(USER_DATA != null) {
+        if(result.isRoomFull) {
+            window.location.href = APPLICATION_BASE_URL+"/game/"+USER_DATA.id;
+        } else {
             $("#mp_registration_form").hide();
-            $("#mp_room_status").html(localization['wait.join']);
-            $("#mp_room_status").attr('roomStatus', result.roomStatus);
+            $("#mp_room_status").html('Waiting for other players to join...');
+            $("#mp_room_status").attr('isCrowded', result.isRoomFull);
+            reloadUsersList(result.users);
         }
-        if($('.mp_participant').length != result.participants.length) {
-            reloadUsersList(result.participants);
+    } else {
+        var isCrowdedOnPage = $("#mp_room_status").attr('isCrowded');
+        if(isCrowdedOnPage == null || result.isRoomFull != JSON.parse(isCrowdedOnPage)){
+            changeRoomStatus(result);
+            reloadUsersList(result.users);
+        } else if(!result.isRoomFull){
+            reloadUsersList(result.users);
         }
-        setTimeout(updatePageRoomContent(), REQUESTS_TIMEOUT);
     }
-}
-
-function processAnonymousUserResponse(result) {
-    var roomStatusOnPage = $("#mp_room_status").attr('roomStatus');
-    if(result.roomStatus != roomStatusOnPage){
-        changeRoomStatus(result);
-    }
-    if(result.roomStatus != 'CROWDED'){
-        $("#mp_registration_form").show();
-    }
-    reloadUsersList(result.participants);
 }
 
 function changeRoomStatus(result) {
-    $("#mp_room_status").html(localization['room.status.'+result.roomStatus]);
-    $("#mp_room_status").attr('roomStatus', result.roomStatus);
+    var roomStatus;
+    if(result.isRoomFull) {
+        $("#mp_registration_form").hide();
+        roomStatus = "Sorry, we have no free places. Try again later";
+    } else {
+        $("#mp_registration_form").show();
+        roomStatus = "Join the club:";
+    }
+
+    $("#mp_room_status").html(roomStatus);
+    $("#mp_room_status").attr('isCrowded', result.isRoomFull);
 }
 
-function reloadUsersList(participants) {
+function reloadUsersList(users) {
     $("#mp_participants").empty();
-    for(var index=0; index<participants.length; index++) {
-        $("#mp_participants").append("<div class='mp_participant'>"+participants[index].name+"</div>");
+    for(var index=0; index<users.length; index++) {
+        $("#mp_participants").append("<div>"+users[index].name+"</div>");
     }
 }

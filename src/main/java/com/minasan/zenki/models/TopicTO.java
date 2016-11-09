@@ -1,11 +1,17 @@
 package com.minasan.zenki.models;
 
-/**
- * Holds common data about the topic
- */
 public class TopicTO {
-    private UserTO author;
+    private long playerId;
+    private long cardId;
     private String title;
+
+    public long getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(long cardId) {
+        this.cardId = cardId;
+    }
 
     public String getTitle() {
         return title;
@@ -15,11 +21,11 @@ public class TopicTO {
         this.title = title;
     }
 
-    public UserTO getAuthor() {
-        return author;
+    public long getPlayerId() {
+        return playerId;
     }
 
-    public void setAuthor(UserTO author) {
-        this.author = author;
+    public void setPlayerId(long playerId) {
+        this.playerId = playerId;
     }
 }

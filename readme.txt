@@ -28,7 +28,7 @@ From cmd in Zenki/ folder run "gradle clean build", this will build war
 
 8. Run tomcat
 
-9. Check. In browser open "http://localhost:8080/zenki/greetings"
+9. Check. In browser open "http://localhost:8080/zenki/mainpage"
 If you see anything that is not 404 error - congrats.
 
 10. Additional setup:

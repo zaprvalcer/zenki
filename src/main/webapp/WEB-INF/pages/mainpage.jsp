@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" import="com.minasan.zenki.models.UserTO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="com.minasan.zenki.models.*" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="resources/css/mainpage.css" type="text/css"/>
     <script src="resources/js/jquery-1.11.2.min.js"></script>
-    <script src="resources/js/localization.js"></script>
+    <script src="resources/js/mainpage.js"></script>
     <script type="text/javascript">
         <%UserTO player = (UserTO)request.getAttribute("player");%>
         var APPLICATION_BASE_URL = 'http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}',
@@ -17,18 +16,20 @@
         <%} else {%>
             USER_DATA = null;
         <%}%>
+
+        $(document).ready(loadMainPageContent);
     </script>
-    <script src="resources/js/mainpage.js"></script>
 </head>
 <body>
-<h1 id="mp_greetings"></h1>
+<h1 id="mp_greetings">Wanna play a game?</h1>
 <h2 id="mp_room_status"></h2>
 <div id="mp_participants"></div>
 <br/><br/>
-<form id="mp_registration_form" action="registration" method="post" hidden="true">
-    <div id="mp_login_description"></div>
-    <input id="mp_login_name" name="userName" type="text"/>
-    <button id="mp_login_button" type="submit"></button>
+<form id="mp_registration_form" action="mainpage" method="post" hidden="true">
+    Sign in to join the game:
+    <input id="mp_login_name" name="userName" type="text" style="width: 100px; height:20px;"/>
+    <button id="mp_login_button" type="submit" style="width: 100px; height:20px;">Sign in</button>
 </form>
+
 </body>
 </html>
